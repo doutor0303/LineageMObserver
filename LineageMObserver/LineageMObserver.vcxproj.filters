@@ -42,6 +42,12 @@
     <ClInclude Include="Utils.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="RegistrationTokenDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorListBox.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LineageMObserver.cpp">
@@ -63,6 +69,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RegistrationTokenDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorListBox.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

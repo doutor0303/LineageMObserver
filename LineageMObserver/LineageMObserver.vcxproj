@@ -190,9 +190,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Capture.h" />
+    <ClInclude Include="ColorListBox.h" />
     <ClInclude Include="LineageMObserver.h" />
     <ClInclude Include="LineageMObserverDlg.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="RegistrationTokenDlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -201,9 +203,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Capture.cpp" />
+    <ClCompile Include="ColorListBox.cpp" />
     <ClCompile Include="LineageMObserver.cpp" />
     <ClCompile Include="LineageMObserverDlg.cpp" />
     <ClCompile Include="Log.cpp" />
+    <ClCompile Include="RegistrationTokenDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
