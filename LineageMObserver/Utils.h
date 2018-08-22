@@ -13,8 +13,8 @@ public:
 	Utils();
 	~Utils();
 	static bool executeShell(const wchar_t *file, const wchar_t *parm);
-	static bool hBitmapToMat(HBITMAP hBmp, Mat &img);
-	int SavefileFromBitmap(HBITMAP hBitmap, LPCTSTR lpszFileName);
-	int SavePNGFromBitmapUsingOpenCV(HBITMAP bitmap);
+	static Mat hBitmapToMat(HBITMAP hBmp);
+	static int SavefileFromBitmap(HBITMAP hBitmap, LPCTSTR lpszFileName);
+	static int SavePNGFromBitmapUsingOpenCV(HBITMAP bitmap);
 };
 

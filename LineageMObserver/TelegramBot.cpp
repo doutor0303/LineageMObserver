@@ -13,6 +13,12 @@ TelegramBot::TelegramBot()
 	strToken = TEXT("641687142:AAHh_PiL27onti0AnocDzdjIzf3oBEU9Ofc");
 }
 
+TelegramBot::TelegramBot(CString user, CString token)
+{
+	strUser = strUser; //TEXT("544284998");
+	strToken = token; // TEXT("641687142:AAHh_PiL27onti0AnocDzdjIzf3oBEU9Ofc");
+}
+
 TelegramBot::~TelegramBot()
 {
 }
@@ -133,4 +139,12 @@ void TelegramBot::setPrefixString(CString prefix)
 {
 	// TODO: 여기에 구현 코드 추가.
 	strPrefix = prefix;
+}
+
+void TelegramBot::setToken(CString token) {
+
+}
+
+void TelegramBot::setUserID(CString id) {
+
 }

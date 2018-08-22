@@ -38,26 +38,27 @@ bool Utils::executeShell(const wchar_t *file, const wchar_t *parm)
 }
 
 
-bool Utils::hBitmapToMat(HBITMAP hBmp, Mat &img)
+Mat Utils::hBitmapToMat(HBITMAP hBmp)
 {
 	// TODO: 여기에 구현 코드 추가.
 	BITMAP bmp;
 
-	GetObject(hBmp, sizeof(BITMAP), &bmp);
-
+	int error = GetObject(hBmp, sizeof(BITMAP), (LPSTR)&bmp);
 	int nChannels = bmp.bmBitsPixel == 1 ? 1 : bmp.bmBitsPixel / 8;
-
 	int depth = bmp.bmBitsPixel == 1 ? IPL_DEPTH_1U : IPL_DEPTH_8U;
 
-	Mat imgT(bmp.bmHeight, bmp.bmWidth, CV_MAKETYPE(depth, nChannels));
+	BYTE *pBuffer = new BYTE[bmp.bmHeight*bmp.bmWidth*nChannels];
+	GetBitmapBits(hBmp, bmp.bmHeight*bmp.bmWidth*nChannels, pBuffer);
+	
+	Mat Channel4Mat(bmp.bmHeight, bmp.bmWidth, CV_8UC4, pBuffer);
+	delete pBuffer;
 
-	memcpy(imgT.data, (char*)(bmp.bmBits), bmp.bmHeight*bmp.bmWidth*nChannels);
+	Mat Channel3Mat(bmp.bmHeight, bmp.bmWidth, CV_8UC3);
+	cvtColor(Channel4Mat, Channel3Mat, CV_BGRA2BGR);
+	
+//	imshow("name", Channel4Mat);
 
-	imshow("name", imgT);
-
-//	img = imgT;
-
-	return true;
+	return Channel3Mat;
 }
 
 
