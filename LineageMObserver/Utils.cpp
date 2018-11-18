@@ -49,14 +49,18 @@ Mat Utils::hBitmapToMat(HBITMAP hBmp)
 
 	BYTE *pBuffer = new BYTE[bmp.bmHeight*bmp.bmWidth*nChannels];
 	GetBitmapBits(hBmp, bmp.bmHeight*bmp.bmWidth*nChannels, pBuffer);
-	
-	Mat Channel4Mat(bmp.bmHeight, bmp.bmWidth, CV_8UC4, pBuffer);
-	delete pBuffer;
 
-	Mat Channel3Mat(bmp.bmHeight, bmp.bmWidth, CV_8UC3);
+	Mat Channel4Mat(bmp.bmHeight, bmp.bmWidth, CV_MAKETYPE(depth, nChannels));
+	memcpy(Channel4Mat.data, pBuffer, bmp.bmHeight*bmp.bmWidth*nChannels);
+
+	Mat Channel3Mat(bmp.bmHeight, bmp.bmWidth*nChannels, CV_8UC3);
 	cvtColor(Channel4Mat, Channel3Mat, CV_BGRA2BGR);
 	
 //	imshow("name", Channel4Mat);
+//	waitKey(0);
+
+	delete pBuffer;
+	pBuffer = NULL;
 
 	return Channel3Mat;
 }
