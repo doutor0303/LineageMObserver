@@ -14,7 +14,10 @@ public:
 	~Utils();
 	static bool executeShell(const wchar_t *file, const wchar_t *parm);
 	static Mat hBitmapToMat(HBITMAP hBmp);
-	static int SavefileFromBitmap(HBITMAP hBitmap, LPCTSTR lpszFileName);
+	static int SaveFromHBitmapToBmp(HBITMAP hBitmap, LPCTSTR lpszFileName);
 	static int SavePNGFromBitmapUsingOpenCV(HBITMAP bitmap);
+	static int SaveFromHBitmapToJpg(HBITMAP hBitmap, LPCTSTR lpszFileName);
+	static int SaveFromHBitmapToPng(HBITMAP hBitmap, LPCTSTR lpszFileName);
+	static BITMAPINFOHEADER convertFromHBitmapToBi(HBITMAP hBitmap);
 };
 

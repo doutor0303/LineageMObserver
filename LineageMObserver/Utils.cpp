@@ -62,7 +62,7 @@ Mat Utils::hBitmapToMat(HBITMAP hBmp)
 }
 
 
-int Utils::SavefileFromBitmap(HBITMAP hBitmap, LPCTSTR lpszFileName)
+int Utils::SaveFromHBitmapToBmp(HBITMAP hBitmap, LPCTSTR lpszFileName)
 {
 	// TODO: 여기에 구현 코드 추가.
 	HDC hDC;
@@ -146,9 +146,52 @@ int Utils::SavefileFromBitmap(HBITMAP hBitmap, LPCTSTR lpszFileName)
 	return 0;
 }
 
+int Utils::SaveFromHBitmapToJpg(HBITMAP hBitmap, LPCTSTR lpszFileName)
+{
+	// TODO: 여기에 구현 코드 추가.
+	CImage img;
+	
+	img.Attach(hBitmap);
+	img.Save(lpszFileName);
+	img.Detach();
+	img.Destroy();
+
+	return 0;
+}
+
+int Utils::SaveFromHBitmapToPng(HBITMAP hBitmap, LPCTSTR lpszFileName)
+{
+	// TODO: 여기에 구현 코드 추가.
+	CImage img;
+
+	img.Attach(hBitmap);
+	img.Save(lpszFileName);
+	img.Detach();
+	img.Destroy();
+
+	return 0;
+}
 
 int Utils::SavePNGFromBitmapUsingOpenCV(HBITMAP bitmap)
 {
 	// TODO: 여기에 구현 코드 추가.
 	return 0;
+}
+
+BITMAPINFOHEADER Utils::convertFromHBitmapToBi(HBITMAP hBitmap)
+{
+	HDC hDC;
+	BITMAP Bitmap;
+	BITMAPINFOHEADER bi;
+
+	GetObject(hBitmap, sizeof(Bitmap), (LPSTR)&Bitmap);
+	bi.biSize = sizeof(BITMAPINFOHEADER);
+	bi.biWidth = Bitmap.bmWidth;
+	bi.biHeight = Bitmap.bmHeight;
+	bi.biPlanes = 1;
+	bi.biBitCount = 24;
+	bi.biCompression = BI_RGB;
+
+	// TODO: 여기에 구현 코드 추가.
+	return bi;
 }
