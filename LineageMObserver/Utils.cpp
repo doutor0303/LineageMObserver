@@ -184,7 +184,6 @@ int Utils::SavePNGFromBitmapUsingOpenCV(HBITMAP bitmap)
 
 BITMAPINFOHEADER Utils::convertFromHBitmapToBi(HBITMAP hBitmap)
 {
-	HDC hDC;
 	BITMAP Bitmap;
 	BITMAPINFOHEADER bi;
 
@@ -198,4 +197,43 @@ BITMAPINFOHEADER Utils::convertFromHBitmapToBi(HBITMAP hBitmap)
 
 	// TODO: 여기에 구현 코드 추가.
 	return bi;
+}
+
+
+HBITMAP Utils::Mat2HBITMAP(Mat mat)
+{
+	// TODO: 여기에 구현 코드 추가.
+	HBITMAP hbmp = NULL;
+	int bpp = mat.channels() * 8;
+
+	Mat tmp;
+	cvtColor(mat, tmp, CV_BGRA2BGR);
+
+	BITMAPINFO bmpInfo = { 0 };
+	LONG lBmpSize = mat.rows * mat.cols * 3;
+	bmpInfo.bmiHeader.biBitCount = bpp;
+	bmpInfo.bmiHeader.biHeight = mat.rows;
+	bmpInfo.bmiHeader.biWidth = mat.cols;
+	bmpInfo.bmiHeader.biPlanes = 1;
+	bmpInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	// Pointer to access the pixels of bitmap
+	BYTE * pPixels = 0, *pP;
+	hbmp = CreateDIBSection(NULL, (BITMAPINFO *)&bmpInfo, DIB_RGB_COLORS, (void **)&pPixels, NULL, 0);
+
+	if (!hbmp)
+		return hbmp; // return if invalid bitmaps
+
+	   //SetBitmapBits( hBitmap, lBmpSize, pBits);
+	   // Directly Write
+	int left_width = ((bpp*mat.cols + 31) / 32) * 4;
+	pP = pPixels;
+	for (int y = mat.rows - 1, row = 0; row < mat.rows; row++, y--) {
+		for (int x = 0, col = 0; col < mat.cols; x += 3, col++) {
+			pP[x] = tmp.at<Vec3b>(y, col).val[0];
+			pP[x + 1] = tmp.at<Vec3b>(y, col).val[1];
+			pP[x + 2] = tmp.at<Vec3b>(y, col).val[2];
+		}
+		pP += left_width;
+	}
+	return hbmp;
 }

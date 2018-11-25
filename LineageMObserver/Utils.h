@@ -19,5 +19,6 @@ public:
 	static int SaveFromHBitmapToJpg(HBITMAP hBitmap, LPCTSTR lpszFileName);
 	static int SaveFromHBitmapToPng(HBITMAP hBitmap, LPCTSTR lpszFileName);
 	static BITMAPINFOHEADER convertFromHBitmapToBi(HBITMAP hBitmap);
+	static HBITMAP Mat2HBITMAP(Mat mat);
 };
 
